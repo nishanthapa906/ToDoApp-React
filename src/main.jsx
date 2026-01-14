@@ -4,7 +4,8 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 
   import { Bounce, ToastContainer } from 'react-toastify';
-import { TodoProvider } from '../context/todoprovider.jsx';
+import { TodoProvider } from '../context/TodoProvider.jsx';
+
 
 createRoot(document.getElementById('root')).render(
   <>
