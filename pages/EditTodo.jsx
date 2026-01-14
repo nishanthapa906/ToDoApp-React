@@ -1,6 +1,6 @@
 import  { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { TodoContext } from "../context/Todoprovider";
+import { TodoContext } from "../context/todoprovider";
 
 
 function EditTodo() {

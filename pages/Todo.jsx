@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { TodoContext } from "../context/TodoProvider";
+import { TodoContext } from "../context/todoprovider";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
