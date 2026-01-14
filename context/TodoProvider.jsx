@@ -1,7 +1,9 @@
 import { createContext, useEffect, useReducer } from "react";
-export const TodoContext = createContext();
+
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 
+
+export const TodoContext = createContext();
 const getTodo = () => {
   let todos = localStorage.getItem("todoItem");
   return todos ? JSON.parse(todos) : []       // get every time json data from the local storgae
@@ -70,10 +72,19 @@ transition: Bounce,
 
      
     case "update": {
-      return state;
+      let updatedTodo = state.todoItems.map((item) => {
+        return item.id === action.payload.id
+          ? { ...item, title: action.payload.title }
+          : item;
+      });
+      return {
+        todoItems: updatedTodo,
+      };
     }
     case "deleteAll": {
-      return state;
+      return {
+        todoItems: [],
+      };
     }
     default: {
       return state;

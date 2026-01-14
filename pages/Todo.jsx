@@ -1,21 +1,19 @@
 import { useContext, useState } from "react";
-
+import { TodoContext } from "../context/TodoProvider";
 import { v4 as uuidv4 } from "uuid";
-import { TodoContext } from "../context/ToDoprovider";
+import { useNavigate } from "react-router-dom";
 
 function Todo() {
   const [title, setTitle] = useState("");
   const [titleError, setTitleError] = useState("");
+  const navigate = useNavigate();
 
   const { state, dispatch } = useContext(TodoContext);
-  console.log(state.todoItems);
-
   const addTodo = () => {
     if (title.length <= 0) {
       setTitleError("Plz. enter the todo*");
       return;
     }
-    console.log(title);
 
     dispatch({
       type: "add",
@@ -24,7 +22,6 @@ function Todo() {
         title: title,
       },
     });
-
 
     setTitle("");
     setTitleError("");
@@ -36,6 +33,20 @@ function Todo() {
           <input
             onChange={(e) => {
               setTitle(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key == "Enter") {
+                dispatch({
+                  type: "add",
+                  payload: {
+                    id: uuidv4(),
+                    title: title,
+                  },
+                });
+
+                setTitle("");
+                setTitleError("");
+              }
             }}
             value={title}
             className="outline-none border w-[400px] p-3 h-12 rounded-sm"
@@ -55,27 +66,42 @@ function Todo() {
           Add todo
         </button>
       </div>
-      <div className="   p-5">
+
+      <div className="   p-5  space-y-5 ">
         {state.todoItems.length > 0 ? (
           <>
+            <div className="text-right">
+              <button
+                onClick={() => {
+                  dispatch({ type: "deleteAll" });
+                }}
+                className="bg-red-700 p-3 text-white "
+              >
+                Delete all
+              </button>
+            </div>
             {state.todoItems.map((item) => {
               return (
-                <div className="todo1  shadow-2xl shadow-gray-100 bg-white rounded-sm p-4 flex  items-center  justify-between  ">
+                <div
+                  key={item.id}
+                  className="todo1  shadow-2xl shadow-gray-100 bg-white rounded-sm p-4 flex  items-center  justify-between  "
+                >
                   <div className="font-serif">{item.title}</div>
                   <div className="space-x-5">
-                    <button className="bg-amber-700  p-2 w-14 text-white rounded-sm">
+                    <button
+                      onClick={() => {
+                        navigate("/editTodo", { state: item });
+                      }}
+                      className="bg-amber-700  p-2 w-14 text-white rounded-sm"
+                    >
                       Edit
                     </button>
                     <button
                       onClick={() => {
-                        dispatch({
-                          type: "delete",
-                          payload: { id: item.id },
-                        });
-
-                      }
-                      }
-                      className="bg-red-600  p-2 w-14 text-white rounded-sm">
+                        dispatch({ type: "delete", payload: { id: item.id } });
+                      }}
+                      className="bg-red-600  p-2 w-14 text-white rounded-sm"
+                    >
                       Delete
                     </button>
                   </div>
@@ -84,13 +110,14 @@ function Todo() {
             })}
           </>
         ) : (
-          <div className=" w-96 m-auto p-4 text-2xl flex gap-x-4 justify-center items-center "> 
-           <h1 className="font-semibold italic"> There is No todo to show </h1>
-            <img 
-            width="30"
-            src="https://png.pngtree.com/png-clipart/20240927/original/pngtree-sad-emoji-png-image_16109987.png"
-          />
-          
+          <div className=" w-96 m-auto p-4 text-2xl   flex  gap-x-4 justify-center items-center ">
+            <h1 className="font-semibold  italic"> There is no todo to show</h1>
+            <img
+              width="30"
+              src="https://emojiisland.com/cdn/shop/products/Sad_Face_Emoji_large.png?v=1571606037"
+              alt=""
+            />
+            !
           </div>
         )}
       </div>
