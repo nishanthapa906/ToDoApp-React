@@ -1,6 +1,7 @@
 import  { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { TodoContext } from "../context/todoprovider";
+import { TodoContext } from "../context/TodoProvider";
+
 
 
 

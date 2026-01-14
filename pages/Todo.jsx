@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
-import { TodoContext } from "../context/todoprovider";
+
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import { TodoContext } from "../context/TodoProvider";
 
 function Todo() {
   const [title, setTitle] = useState("");
