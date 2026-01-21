@@ -10,7 +10,7 @@ import { TodoProvider } from '../context/TodoProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
   <>
-    <BrowserRouter>
+    <BrowserRouter >
       <TodoProvider>
         <App />
         <ToastContainer

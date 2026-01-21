@@ -7,7 +7,7 @@ import EditTodo from '../pages/EditTodo'
 
 function App() {
   return (
-    <div>
+    <div className=' bg-green-50'>
        <Header />
       <Routes>
         <Route path ='/' element = {<Home/>} ></Route>

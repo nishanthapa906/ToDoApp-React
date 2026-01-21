@@ -10,6 +10,7 @@ function Todo() {
   const navigate = useNavigate();
 
   const { state, dispatch } = useContext(TodoContext);
+  
   const addTodo = () => {
     if (title.length <= 0) {
       setTitleError("Plz. enter the todo*");
