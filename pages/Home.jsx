@@ -17,11 +17,11 @@ const Home = () => {
   };
 
   return (
-    <div   style={{ padding: '20px', textAlign: 'center', fontFamily: 'Arial' }}>
+    <div   style={{ padding: '20px', textAlign: 'center', fontFamily: 'Arial'  }}>
      
-      <header className='mt-5 space-y-4 text-2xl p-20 '>
-        <h1 className='font-semibold'>Master Plan</h1>
-        <p>{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+      <header className=' space-y-4 text-2xl p-20 '>
+        <h1 className='ml-180 font-bold text-4xl font-serif text-blue-600 shadow-xl shadow-amber-100  w-[300px] '>Master Plan</h1>
+        <p className='text-emerald-600 mt-5 '>{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
       </header>
 
       <hr style={{ margin: '20px 0', opacity: '0.2' }} />
