@@ -1,8 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
-
 import { Bounce, toast, ToastContainer } from 'react-toastify';
-
-
 export const TodoContext = createContext();
 const getTodo = () => {
   let todos = localStorage.getItem("todoItem");
